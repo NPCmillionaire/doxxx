@@ -1,6 +1,6 @@
 import httpx
 import time
-from user_scanner.core.result import Result
+from doxx.core.result import Result
 
 def _generate_timestamp() -> str:
     """Generates a current Unix timestamp in milliseconds as a string."""

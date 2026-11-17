@@ -1,5 +1,5 @@
-from user_scanner.core import helpers as hl
-from user_scanner.utils import update as upd
+from doxx.core import helpers as hl
+from doxx.utils import update as upd
 import subprocess
 
 def test_default_config():
@@ -11,7 +11,7 @@ def test_default_config():
 
 def test_config_json(tmp_path, monkeypatch):
     cfg = tmp_path / "config.json"
-    monkeypatch.setenv("USER_SCANNER_CONFIG", str(cfg))
+    monkeypatch.setenv("DOXX_CONFIG", str(cfg))
     configs = hl.load_config()
     assert "auto_update_status" in configs
     # Should be default True
@@ -20,7 +20,7 @@ def test_config_json(tmp_path, monkeypatch):
 
 def test_config_set(tmp_path, monkeypatch):
     cfg = tmp_path / "config.json"
-    monkeypatch.setenv("USER_SCANNER_CONFIG", str(cfg))
+    monkeypatch.setenv("DOXX_CONFIG", str(cfg))
 
     def get_status():
         return hl.load_config()["auto_update_status"]
@@ -45,5 +45,6 @@ def test_update_self_prints_message_on_install_failure(monkeypatch, capsys):
     upd.update_self()
 
     out = capsys.readouterr().out
-    assert "Failed to update user-scanner" in out
-    assert len(calls) == 2  # uninstall attempted, then install attempted
+    assert "Failed to update doxx" in out
+    assert len(calls) == 1
+    assert calls[0][-1] == upd.GIT_URL

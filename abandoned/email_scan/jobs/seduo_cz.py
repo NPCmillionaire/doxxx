@@ -1,7 +1,7 @@
 import re
 
-from user_scanner.core.impersonate import impersonate_request_async
-from user_scanner.core.result import Result
+from doxx.core.impersonate import impersonate_request_async
+from doxx.core.result import Result
 
 
 _URL = "https://www.seduo.cz/poslat-zapomenute-heslo"

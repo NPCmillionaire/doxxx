@@ -1,11 +1,11 @@
-# Contributing to user-scanner
+# Contributing to doxx
 
 ---
 
 This project separates two kinds of checks:
 
-- Username availability checks (under `user_scanner/user_scan/*`) — synchronous validators that the main username scanner uses.
-- Email OSINT checks (under `user_scanner/email_scan/`) — asynchronous, multi-step flows that probe signup pages or email-focused APIs. Put email-focused modules in `user_scanner/email_scan/` (subfolders like `social/`, `dev/`, `community`, `creator` etc. are fine — follow the existing tree).
+- Username availability checks (under `doxx/user_scan/*`) — synchronous validators that the main username scanner uses.
+- Email OSINT checks (under `doxx/email_scan/`) — asynchronous, multi-step flows that probe signup pages or email-focused APIs. Put email-focused modules in `doxx/email_scan/` (subfolders like `social/`, `dev/`, `community`, `creator` etc. are fine — follow the existing tree).
 
 ---
 
@@ -20,17 +20,17 @@ This project separates two kinds of checks:
 
 Minimal best-practices checklist for email modules
 
-- [ ] Put file in `user_scanner/email_scan/<category>/service.py`.
+- [ ] Put file in `doxx/email_scan/<category>/service.py`.
 - [ ] Export `async def validate_<service>(email: str) -> Result`.
 - [ ] Use `httpx.AsyncClient` for requests, with sensible timeouts and follow_redirects when needed.
 - [ ] Add a short docstring describing environment variables (api keys), rate limits, and responsible-use note (if required)
 
 ### Example: Mastodon async example:
 
-```python name=user_scanner/email_scan/social/mastodon.py
+```python name=doxx/email_scan/social/mastodon.py
 import httpx
 import re
-from user_scanner.core.result import Result
+from doxx.core.result import Result
 
 
 async def _check(email: str) -> Result:
@@ -136,7 +136,7 @@ def validate_<sitename>(user: str) -> Result:
 2. **Deep Data Extraction:** If the user is found, attempt to extract rich metadata (fullname, location, bio, stats) and return it via `Result.taken(extra={"fullname": "John Doe", ...})`. **If extracting profile pictures, banners, or other images, you MUST pass their URLs in the `media` dictionary** (e.g., `Result.taken(media={"avatar": "https://..."})`), not in `extra`.
 3. **Strict Error Handling:** NEVER use `raise Exception()`. All unhandled states or unexpected status codes must return `Result.error(f"Unexpected status code {resp.status_code}")`.
 4. **Use Orchestrator Helpers:** Use `generic_validate` to standardize `httpx` logic, but write robust `process` callbacks.
-5. **Use Next.js Helpers:** When a site is based on Next.js, use the matching helper from `user_scanner.core.nextjs`: `parse_next_pages_data` for Pages Router `__NEXT_DATA__`, `iter_next_app_flight_chunks` for App Router Flight data, or `parse_next_pages_redirect` for Pages Router JSON redirects. Do not duplicate this parsing in a module.
+5. **Use Next.js Helpers:** When a site is based on Next.js, use the matching helper from `doxx.core.nextjs`: `parse_next_pages_data` for Pages Router `__NEXT_DATA__`, `iter_next_app_flight_chunks` for App Router Flight data, or `parse_next_pages_redirect` for Pages Router JSON redirects. Do not duplicate this parsing in a module.
 
 ---
 
@@ -152,8 +152,8 @@ To keep validators DRY, the repository provides helper functions in `core/orches
 ### Example robust module with deep data extraction:
 
 ```python
-from user_scanner.core.orchestrator import generic_validate
-from user_scanner.core.result import Result
+from doxx.core.orchestrator import generic_validate
+from doxx.core.result import Result
 import re
 import json
 
@@ -196,8 +196,8 @@ def validate_example(user: str) -> Result:
   - `allow_redirects` defaults to `False`, unlike httpx's `follow_redirects=True` in the `generic_validate` example. Pass `allow_redirects=True` when the profile URL redirects. Additional keyword arguments are forwarded to `impersonate_request`.
 
 ```python
-from user_scanner.core.impersonate import impersonate_validate
-from user_scanner.core.result import Result
+from doxx.core.impersonate import impersonate_validate
+from doxx.core.result import Result
 
 
 def validate_example(user: str) -> Result:

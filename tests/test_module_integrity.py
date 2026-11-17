@@ -16,7 +16,7 @@ def test_no_duplicate_normalized_module_names():
     root = _get_project_root()
 
     for scan_type in ["user_scan", "email_scan"]:
-        base_dir = root / "user_scanner" / scan_type
+        base_dir = root / "doxx" / scan_type
         assert base_dir.exists(), f"Directory not found: {base_dir}"
 
         normalized_map = defaultdict(list)
@@ -44,7 +44,7 @@ def test_no_duplicate_validator_functions():
     root = _get_project_root()
 
     for scan_type in ["user_scan", "email_scan"]:
-        base_dir = root / "user_scanner" / scan_type
+        base_dir = root / "doxx" / scan_type
         validator_map = defaultdict(list)
 
         for path in base_dir.rglob("*.py"):
@@ -77,7 +77,7 @@ def test_no_duplicate_show_urls_in_user_scan():
     Prevents adding duplicate platforms with arbitrary different file names.
     """
     root = _get_project_root()
-    base_dir = root / "user_scanner" / "user_scan"
+    base_dir = root / "doxx" / "user_scan"
     show_url_map = defaultdict(list)
 
     for path in base_dir.rglob("*.py"):

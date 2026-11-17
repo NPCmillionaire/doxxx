@@ -1,11 +1,11 @@
-from user_scanner.utils import updater_logic
+from doxx.utils import updater_logic
 
 
-def test_skips_prompt_when_pypi_unreachable(monkeypatch, capsys):
+def test_skips_prompt_when_remote_unreachable(monkeypatch, capsys):
     monkeypatch.setattr(
         updater_logic, "load_config", lambda: {"auto_update_status": True}
     )
-    monkeypatch.setattr(updater_logic, "get_pypi_version", lambda url: None)
+    monkeypatch.setattr(updater_logic, "get_remote_version", lambda url: None)
     monkeypatch.setattr(
         updater_logic, "load_local_version", lambda: ("1.4.1.9", "local")
     )
@@ -17,7 +17,7 @@ def test_skips_prompt_when_pypi_unreachable(monkeypatch, capsys):
 
     out = capsys.readouterr().out
     assert "New version available" not in out
-    assert "Could not reach PyPI" in out
+    assert "Could not reach GitHub" in out
     assert called == []  # input() never invoked
 
 
@@ -25,7 +25,7 @@ def test_prompts_when_real_update_available(monkeypatch, capsys):
     monkeypatch.setattr(
         updater_logic, "load_config", lambda: {"auto_update_status": True}
     )
-    monkeypatch.setattr(updater_logic, "get_pypi_version", lambda url: "9.9.9")
+    monkeypatch.setattr(updater_logic, "get_remote_version", lambda url: "9.9.9")
     monkeypatch.setattr(
         updater_logic, "load_local_version", lambda: ("1.4.1.9", "local")
     )
@@ -41,7 +41,7 @@ def test_no_prompt_when_up_to_date(monkeypatch, capsys):
     monkeypatch.setattr(
         updater_logic, "load_config", lambda: {"auto_update_status": True}
     )
-    monkeypatch.setattr(updater_logic, "get_pypi_version", lambda url: "1.4.1.9")
+    monkeypatch.setattr(updater_logic, "get_remote_version", lambda url: "1.4.1.9")
     monkeypatch.setattr(
         updater_logic, "load_local_version", lambda: ("1.4.1.9", "local")
     )

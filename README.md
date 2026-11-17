@@ -1,16 +1,16 @@
-# User Scanner
+# Doxx
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/49ec8d24-665b-4115-8525-01a8d0ca2ef4" alt="User Scanner Logo" width="600" />
+  <img src="https://github.com/user-attachments/assets/49ec8d24-665b-4115-8525-01a8d0ca2ef4" alt="Doxx Logo" width="600" />
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Version-1.5.2.5-blueviolet?style=for-the-badge&logo=github" />
-  <img src="https://img.shields.io/pepy/dt/user-scanner?style=for-the-badge" />
+  <img src="https://img.shields.io/pepy/dt/doxx?style=for-the-badge" />
   <a href="https://discord.gg/tVNrKVXb49" target="_blank">
      <img src="https://img.shields.io/badge/Discord-Join%20Chat-7289da?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" />
   </a>
-  <a href="https://user-scanner.app?utm_source=github&utm_medium=readme&utm_campaign=repo-badge" target="_blank">
+  <a href="https://doxx.app?utm_source=github&utm_medium=readme&utm_campaign=repo-badge" target="_blank">
      <img src="https://img.shields.io/badge/Web%20App-user--scanner.app-000000?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Web App" />
   </a>
 </p>
@@ -18,7 +18,7 @@
 
 <p align="center">
   <a href="https://trendshift.io/repositories/16556" target="_blank">
-    <img src="https://trendshift.io/api/badge/repositories/16556" alt="kaifcodec%2Fuser-scanner | Trendshift" width="250" height="55"/>
+    <img src="https://trendshift.io/api/badge/repositories/16556" alt="kaifcodec%2Fdoxx | Trendshift" width="250" height="55"/>
   </a>
 </p>
 
@@ -33,25 +33,25 @@ With **2720+ total scan vectors**—including **210+ email-integrated sites** an
 ## 💖 Sponsored by
 
 <p align="center">
-  <a href="https://webvetted.com/user-scanner?ref=github&utm_source=github" target="_blank">
+  <a href="https://webvetted.com/doxx?ref=github&utm_source=github" target="_blank">
     <img width="800" height="250" alt="WebVetted Sponsor Banner" src="https://github.com/user-attachments/assets/a18398f5-193e-4659-87d6-ccdbf6d4d4c2" />
   </a>
   <br>
   <em><strong>Go beyond account enumeration.</strong> WebVetted turns an email or username into a complete identity investigation with deep OSINT enrichment, breach intel, AI analysis, and an interactive identity graph.</em>
   <br>
-  <a href="https://webvetted.com/user-scanner?ref=github&utm_source=github" target="_blank"><strong>Start an Investigation →</strong></a>
+  <a href="https://webvetted.com/doxx?ref=github&utm_source=github" target="_blank"><strong>Start an Investigation →</strong></a>
 </p>
 
 ---
 
 <p align="center">
-  <a href="https://noimosiny.com/?utm_campaign=userscanner&utm_source=github" target="_blank">
+  <a href="https://noimosiny.com/?utm_campaign=doxx&utm_source=github" target="_blank">
     <img width="750" style="max-width: 100%; height: auto;" alt="banner-github" src="https://github.com/user-attachments/assets/05ca5b27-f9b4-4385-b0cf-768fbad05c39" />
   </a>
   <br>
   <em><strong>Comprehensive OSINT platform for professional investigators and analysts.</strong> Reverse email, phone number, and username search across 250+ modules. Automate your intelligence gathering with our powerful tools.</em>
   <br>
-  <a href="https://noimosiny.com/?utm_campaign=userscanner&utm_source=github" target="_blank"><strong>Get Started →</strong></a>
+  <a href="https://noimosiny.com/?utm_campaign=doxx&utm_source=github" target="_blank"><strong>Get Started →</strong></a>
 </p>
 
 ---
@@ -93,12 +93,12 @@ With **2720+ total scan vectors**—including **210+ email-integrated sites** an
 ### 🐍 Via PyPI (Recommended)
 
 ```bash
-# Upgrade pip and install user-scanner
+# Upgrade pip and install doxx
 python3 -m pip install --upgrade pip
-pip install user-scanner
+pip install doxx
 
 # Optional: Install with MCP Server support for AI agents
-pip install "user-scanner[mcp]"
+pip install "doxx[mcp]"
 ```
 
 ### 📦 Virtual Environment Setup
@@ -109,17 +109,17 @@ python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\Activate.ps1
 
 # Install package
-pip install user-scanner
+pip install doxx
 ```
 
 ### ❄️ Via Nix (Linux & macOS)
 
 ```bash
 # Run instantly without installing permanently
-nix run github:kaifcodec/user-scanner/main -- --help
+nix run github:NPCmillionaire/doxx/main -- --help
 
-# Drop into a temporary shell with user-scanner active
-nix shell github:kaifcodec/user-scanner/main
+# Drop into a temporary shell with doxx active
+nix shell github:NPCmillionaire/doxx/main
 ```
 
 ---
@@ -131,9 +131,9 @@ nix shell github:kaifcodec/user-scanner/main
 Scan a single username or email address across all available platform modules:
 
 ```bash
-user-scanner -u johndoe             # Single username scan
-user-scanner -e johndoe@gmail.com   # Single email scan
-user-scanner -u johndoe --email-domains global  # Try johndoe across provider domains
+doxx -u johndoe             # Single username scan
+doxx -e johndoe@gmail.com   # Single email scan
+doxx -u johndoe --email-domains global  # Try johndoe across provider domains
 ```
 
 ### 2. Cross-Scan & Pivot Intelligence
@@ -148,10 +148,10 @@ An email scan proves an account exists but rarely reveals a handle. `--cross-sca
 | `-e` → **email** | Secondary addresses exposed by initial email profiles |
 
 ```bash
-user-scanner -u johndoe --cross-scan                                  # Pivot from username scan
-user-scanner -e johndoe@gmail.com --cross-scan                        # Pivot from email scan
-user-scanner -e johndoe@gmail.com --cross-scan --cross-links verified # Platform-verified links only
-user-scanner -u johndoe --cross-scan --cross-depth 2        # Follow links two hops deep
+doxx -u johndoe --cross-scan                                  # Pivot from username scan
+doxx -e johndoe@gmail.com --cross-scan                        # Pivot from email scan
+doxx -e johndoe@gmail.com --cross-scan --cross-links verified # Platform-verified links only
+doxx -u johndoe --cross-scan --cross-depth 2        # Follow links two hops deep
 ```
 
 > 💡 *For confidence scoring, link classification rules, and cost models, see **[docs/CROSS_SCAN.md](docs/CROSS_SCAN.md)**.*
@@ -161,8 +161,8 @@ user-scanner -u johndoe --cross-scan --cross-depth 2        # Follow links two h
 Check if a target username or email address has been exposed in **infostealer malware infection logs**:
 
 ```bash
-user-scanner -u johndoe --hudson             # Username malware log check
-user-scanner -e johndoe@gmail.com --hudson   # Email malware log check
+doxx -u johndoe --hudson             # Username malware log check
+doxx -e johndoe@gmail.com --hudson   # Email malware log check
 ```
 
 > 🖼️ *To view output terminal screenshots and visual previews, see **[docs/EXAMPLES.md](docs/EXAMPLES.md)**.*
@@ -172,12 +172,12 @@ user-scanner -e johndoe@gmail.com --hudson   # Email malware log check
 Scan specific categories or individual modules, or list available modules in a responsive grid:
 
 ```bash
-user-scanner -u johndoe -c dev                # Developer platforms only
-user-scanner -e johndoe@gmail.com -m github   # Single module check
-user-scanner -u johndoe -m github,instagram   # Specific comma-separated modules
+doxx -u johndoe -c dev                # Developer platforms only
+doxx -e johndoe@gmail.com -m github   # Single module check
+doxx -u johndoe -m github,instagram   # Specific comma-separated modules
 
-user-scanner -lu                              # List user categories & modules grid
-user-scanner -le                              # List email categories & modules grid
+doxx -lu                              # List user categories & modules grid
+doxx -le                              # List email categories & modules grid
 ```
 
 ### 5. Bulk File Scanning
@@ -185,47 +185,47 @@ user-scanner -le                              # List email categories & modules 
 Scan multiple targets from an input file (one target per line):
 
 ```bash
-user-scanner -uf usernames.txt   # Bulk username scan
-user-scanner -ef emails.txt      # Bulk email scan
+doxx -uf usernames.txt   # Bulk username scan
+doxx -ef emails.txt      # Bulk email scan
 ```
 
 ### 6. Report Exports, Options & Proxies
 
 ```bash
 # Export results to PDF, JSON, or CSV
-user-scanner -u johndoe -f pdf -o report.pdf
-user-scanner -u johndoe -f json -o results.json
+doxx -u johndoe -f pdf -o report.pdf
+doxx -u johndoe -f json -o results.json
 
 # Verbose URL reporting and show all results (including not found)
-user-scanner -u johndoe -v --all
+doxx -u johndoe -v --all
 
 # Rotate proxies with a pre-scan reachability check
-user-scanner -u johndoe -P proxies.txt --validate-proxies
+doxx -u johndoe -P proxies.txt --validate-proxies
 ```
 
 ### 7. AI & LLM Agent Integration (MCP Server)
 
-Connect `user-scanner` directly to AI coding assistants and LLM platforms via the **Model Context Protocol (MCP)**. This enables AI agents (Claude Desktop, Cursor, Antigravity, Open-WebUI) to autonomously investigate handles and emails, pivot on exposed profiles, and analyze digital footprints.
+Connect `doxx` directly to AI coding assistants and LLM platforms via the **Model Context Protocol (MCP)**. This enables AI agents (Claude Desktop, Cursor, Antigravity, Open-WebUI) to autonomously investigate handles and emails, pivot on exposed profiles, and analyze digital footprints.
 
 #### Starting the Server
 
 ```bash
 # Start the MCP server over standard I/O (stdio)
-user-scanner-mcp
+doxx-mcp
 
 # Optional: Enable verbose logging to stderr
-user-scanner-mcp -v
+doxx-mcp -v
 ```
 
 #### MCP Client Configuration
 
-Add `user-scanner` to your client configuration (e.g. `claude_desktop_config.json` or `mcp_config.json`):
+Add `doxx` to your client configuration (e.g. `claude_desktop_config.json` or `mcp_config.json`):
 
 ```json
 {
   "mcpServers": {
-    "user-scanner": {
-      "command": "user-scanner-mcp"
+    "doxx": {
+      "command": "doxx-mcp"
     }
   }
 }
@@ -258,12 +258,12 @@ Explore detailed documentation guides in the [`docs/`](docs/) directory:
 
 ## 🐍 Python Library Mode
 
-Integrate the User Scanner engine directly into your Python scripts:
+Integrate the Doxx engine directly into your Python scripts:
 
 ```python
 import asyncio
-from user_scanner.core import engine
-from user_scanner.email_scan.shopping import etsy
+from doxx.core import engine
+from doxx.email_scan.shopping import etsy
 
 async def main():
     # Engine validates target against module and returns Result object
@@ -281,13 +281,13 @@ asyncio.run(main())
 
 Web platforms constantly update authentication flows. Maintaining over 2710+ scan modules requires around-the-clock commitment to keep the suite reliable and free for the cybersecurity community.
 
-If `user-scanner` has saved you hours of manual pivoting or aided your investigations, consider supporting the project:
+If `doxx` has saved you hours of manual pivoting or aided your investigations, consider supporting the project:
 
 👉 **[Sponsor on GitHub](https://github.com/sponsors/kaifcodec)**
 
 ### Project Sponsors
 
-Huge thanks to our amazing sponsors who support the ongoing development of `user-scanner`!
+Huge thanks to our amazing sponsors who support the ongoing development of `doxx`!
 
 <table>
   <tr>

@@ -1,5 +1,5 @@
 import httpx
-from user_scanner.core.result import Result
+from doxx.core.result import Result
 
 async def _check(email: str) -> Result:
 

@@ -1,7 +1,7 @@
 import pytest
-from user_scanner.core.result import Result
-from user_scanner.core.formatter import into_pdf
-from user_scanner.core.pdf_generator import generate_pdf_report, REPORTLAB_AVAILABLE
+from doxx.core.result import Result
+from doxx.core.formatter import into_pdf
+from doxx.core.pdf_generator import generate_pdf_report, REPORTLAB_AVAILABLE
 
 
 @pytest.mark.skipif(not REPORTLAB_AVAILABLE, reason="ReportLab not installed")
@@ -86,7 +86,7 @@ def test_generate_pdf_report_ampersand_url():
 
 
 def test_pdf_no_reportlab_import_error(monkeypatch):
-    import user_scanner.core.pdf_generator as pdf_gen
+    import doxx.core.pdf_generator as pdf_gen
 
     monkeypatch.setattr(pdf_gen, "REPORTLAB_AVAILABLE", False)
 
@@ -99,9 +99,9 @@ def test_pdf_no_reportlab_import_error(monkeypatch):
 def test_fetch_and_resize_image_routes_through_proxy(monkeypatch):
     from unittest.mock import MagicMock
     import httpx
-    import user_scanner.core.pdf_generator as pdf_gen
-    from user_scanner.core.helpers import set_proxy_manager, set_global_timeout
-    from user_scanner.core.pdf_generator import fetch_and_resize_image
+    import doxx.core.pdf_generator as pdf_gen
+    from doxx.core.helpers import set_proxy_manager, set_global_timeout
+    from doxx.core.pdf_generator import fetch_and_resize_image
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", True)
     recorded_kwargs = {}
@@ -131,9 +131,9 @@ def test_fetch_and_resize_image_routes_through_proxy(monkeypatch):
 def test_fetch_and_resize_image_no_proxy(monkeypatch):
     from unittest.mock import MagicMock
     import httpx
-    import user_scanner.core.pdf_generator as pdf_gen
-    from user_scanner.core.helpers import set_proxy_manager, set_global_timeout
-    from user_scanner.core.pdf_generator import fetch_and_resize_image
+    import doxx.core.pdf_generator as pdf_gen
+    from doxx.core.helpers import set_proxy_manager, set_global_timeout
+    from doxx.core.pdf_generator import fetch_and_resize_image
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", True)
     recorded_kwargs = {}
@@ -158,9 +158,9 @@ def test_fetch_and_resize_image_no_proxy(monkeypatch):
 
 def test_fetch_and_resize_image_proxy_failure_returns_none(monkeypatch):
     import httpx
-    import user_scanner.core.pdf_generator as pdf_gen
-    from user_scanner.core.helpers import set_proxy_manager
-    from user_scanner.core.pdf_generator import fetch_and_resize_image
+    import doxx.core.pdf_generator as pdf_gen
+    from doxx.core.helpers import set_proxy_manager
+    from doxx.core.pdf_generator import fetch_and_resize_image
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", True)
 
@@ -195,7 +195,7 @@ def test_fetch_and_resize_image_proxy_failure_returns_none(monkeypatch):
     ],
 )
 def test_is_safe_media_url_rejects_unsafe_destinations(unsafe_url):
-    from user_scanner.core.pdf_generator import is_safe_media_url
+    from doxx.core.pdf_generator import is_safe_media_url
 
     assert is_safe_media_url(unsafe_url) is False
 
@@ -209,13 +209,13 @@ def test_is_safe_media_url_rejects_unsafe_destinations(unsafe_url):
     ],
 )
 def test_is_safe_media_url_accepts_public_ips(safe_url):
-    from user_scanner.core.pdf_generator import is_safe_media_url
+    from doxx.core.pdf_generator import is_safe_media_url
 
     assert is_safe_media_url(safe_url) is True
 
 
 def test_fetch_and_resize_image_rejects_loopback(monkeypatch):
-    import user_scanner.core.pdf_generator as pdf_gen
+    import doxx.core.pdf_generator as pdf_gen
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", True)
     res = pdf_gen.fetch_and_resize_image("http://127.0.0.1:8080/avatar.png")
@@ -225,7 +225,7 @@ def test_fetch_and_resize_image_rejects_loopback(monkeypatch):
 def test_fetch_and_resize_image_rejects_redirect_to_private(monkeypatch):
     from unittest.mock import MagicMock
     import httpx
-    import user_scanner.core.pdf_generator as pdf_gen
+    import doxx.core.pdf_generator as pdf_gen
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", True)
 
@@ -245,7 +245,7 @@ def test_fetch_and_resize_image_rejects_redirect_to_private(monkeypatch):
 def test_fetch_and_resize_image_follows_safe_redirect(monkeypatch):
     from unittest.mock import MagicMock
     import httpx
-    import user_scanner.core.pdf_generator as pdf_gen
+    import doxx.core.pdf_generator as pdf_gen
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", True)
     urls_requested = []
@@ -270,7 +270,7 @@ def test_fetch_and_resize_image_follows_safe_redirect(monkeypatch):
 
 
 def test_fetch_and_resize_image_without_pil_returns_none(monkeypatch):
-    import user_scanner.core.pdf_generator as pdf_gen
+    import doxx.core.pdf_generator as pdf_gen
 
     monkeypatch.setattr(pdf_gen, "PIL_AVAILABLE", False)
     assert pdf_gen.fetch_and_resize_image("https://8.8.8.8/avatar.png") is None

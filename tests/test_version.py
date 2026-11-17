@@ -1,6 +1,6 @@
 import json
 from types import SimpleNamespace
-from user_scanner.core import version
+from doxx.core import version
 
 
 def test_load_local_version(tmp_path, monkeypatch):
@@ -18,3 +18,9 @@ def test_get_pypi_version(monkeypatch):
                         lambda url, timeout=7: SimpleNamespace(json=lambda: {"info": {"version": "1.2.3"}}))
     pv = version.get_pypi_version("http://fake")
     assert pv == "1.2.3"
+
+
+def test_get_remote_version(monkeypatch):
+    monkeypatch.setattr(version.httpx, "get",
+                        lambda url, timeout=7: SimpleNamespace(json=lambda: {"version": "2.0.0"}))
+    assert version.get_remote_version("http://fake") == "2.0.0"

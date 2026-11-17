@@ -1,5 +1,5 @@
 import re
-from user_scanner.core.orchestrator import generic_validate, make_request, Result
+from doxx.core.orchestrator import generic_validate, make_request, Result
 
 CHECK_URL = "https://motherless.xxx/register/checkusername"
 HEADERS = {

@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 
-from user_scanner.core import impersonate
-from user_scanner.core.result import Result, Status
+from doxx.core import impersonate
+from doxx.core.result import Result, Status
 
 
 class FakeSession:

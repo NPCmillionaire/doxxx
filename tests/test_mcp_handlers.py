@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import patch
 
-from user_scanner.mcp.handlers import call_tool, execute_scan
-from user_scanner.core.helpers import ScanConfig
-from user_scanner.core.result import Result
+from doxx.mcp.handlers import call_tool, execute_scan
+from doxx.core.helpers import ScanConfig
+from doxx.core.result import Result
 
 
 @pytest.fixture
@@ -37,7 +37,7 @@ async def test_execute_scan_category_and_module_together():
 
 @pytest.mark.anyio
 async def test_execute_scan_invalid_concurrency():
-    from user_scanner.mcp.handlers import _scan_lock
+    from doxx.mcp.handlers import _scan_lock
 
     for invalid_c in [0, -1, -10]:
         with pytest.raises(ValueError, match="Concurrency must be at least 1"):
@@ -67,7 +67,7 @@ async def test_execute_scan_invalid_concurrency():
     ],
 )
 async def test_execute_scan_rejects_out_of_range_numbers(arguments, message):
-    from user_scanner.mcp.handlers import _scan_lock
+    from doxx.mcp.handlers import _scan_lock
 
     with pytest.raises(ValueError, match=message):
         await execute_scan({"username": "testuser", **arguments}, is_email=False)
@@ -76,7 +76,7 @@ async def test_execute_scan_rejects_out_of_range_numbers(arguments, message):
 
 @pytest.mark.anyio
 async def test_execute_scan_unknown_module_is_an_error():
-    from user_scanner.mcp.handlers import _scan_lock
+    from doxx.mcp.handlers import _scan_lock
 
     with pytest.raises(ValueError, match="Unknown username module 'githb'") as exc_info:
         await execute_scan({"username": "testuser", "module": "githb"}, is_email=False)
@@ -93,7 +93,7 @@ async def test_execute_scan_unknown_module_is_an_error():
 
 @pytest.mark.anyio
 async def test_execute_scan_unknown_category_is_an_error():
-    from user_scanner.mcp.handlers import _scan_lock
+    from doxx.mcp.handlers import _scan_lock
 
     # Category names are exact, like the CLI: a different-case spelling is
     # rejected and the correctly cased name is the first suggestion.
@@ -118,8 +118,8 @@ async def test_execute_scan_unknown_category_respects_no_nsfw():
 
 
 @pytest.mark.anyio
-@patch("user_scanner.mcp.handlers._run_scan")
-@patch("user_scanner.mcp.handlers.set_proxy_manager")
+@patch("doxx.mcp.handlers._run_scan")
+@patch("doxx.mcp.handlers.set_proxy_manager")
 async def test_execute_scan_unknown_scope_never_starts_a_scan(mock_set_proxy, mock_run_scan):
     with pytest.raises(ValueError, match="Unknown username module"):
         await execute_scan(
@@ -131,7 +131,7 @@ async def test_execute_scan_unknown_scope_never_starts_a_scan(mock_set_proxy, mo
 
 
 @pytest.mark.anyio
-@patch("user_scanner.mcp.handlers._run_scan")
+@patch("doxx.mcp.handlers._run_scan")
 async def test_execute_scan_known_scopes_still_run(mock_run_scan):
     mock_run_scan.return_value = [Result.available()]
 
@@ -148,7 +148,7 @@ async def test_execute_scan_known_scopes_still_run(mock_run_scan):
 
 def test_run_scan_rejects_unknown_scope():
     """The thread-side scan must not quietly return [] for a bad scope either."""
-    from user_scanner.mcp.handlers import _run_scan
+    from doxx.mcp.handlers import _run_scan
 
     config = ScanConfig(allow_loud=False, no_nsfw=False, timeout=None)
     with pytest.raises(ValueError, match="Unknown username module 'githb'"):
@@ -158,7 +158,7 @@ def test_run_scan_rejects_unknown_scope():
 
 
 def test_tool_schema_concurrency_minimum():
-    from user_scanner.mcp.schemas import get_tool_list
+    from doxx.mcp.schemas import get_tool_list
 
     tools = get_tool_list()
     scan_tools = [t for t in tools if t.name in ("scan_username", "scan_email")]
@@ -178,11 +178,11 @@ def test_tool_schema_concurrency_minimum():
 
 
 @pytest.mark.anyio
-@patch("user_scanner.mcp.handlers._run_scan")
-@patch("user_scanner.mcp.handlers.set_global_timeout")
-@patch("user_scanner.mcp.handlers.set_proxy_manager")
-@patch("user_scanner.mcp.handlers.set_user_concurrency")
-@patch("user_scanner.mcp.handlers.set_email_concurrency")
+@patch("doxx.mcp.handlers._run_scan")
+@patch("doxx.mcp.handlers.set_global_timeout")
+@patch("doxx.mcp.handlers.set_proxy_manager")
+@patch("doxx.mcp.handlers.set_user_concurrency")
+@patch("doxx.mcp.handlers.set_email_concurrency")
 async def test_execute_scan_argument_mapping(
     mock_set_email_conc,
     mock_set_user_conc,
@@ -225,7 +225,7 @@ async def test_execute_scan_argument_mapping(
 
 
 @pytest.mark.anyio
-@patch("user_scanner.mcp.handlers._run_scan")
+@patch("doxx.mcp.handlers._run_scan")
 async def test_execute_scan_module_normalization(mock_run_scan):
     mock_run_scan.return_value = [Result.available()]
     
@@ -247,8 +247,8 @@ async def test_execute_scan_module_normalization(mock_run_scan):
 
 
 @pytest.mark.anyio
-@patch("user_scanner.mcp.handlers.run_cross_scan")
-@patch("user_scanner.mcp.handlers._run_scan")
+@patch("doxx.mcp.handlers.run_cross_scan")
+@patch("doxx.mcp.handlers._run_scan")
 async def test_execute_scan_cross_scan_runs_off_event_loop(mock_run_scan, mock_cross_scan):
     """run_cross_scan uses asyncio.run() internally, so it must not run on the event loop thread."""
     import asyncio
@@ -276,8 +276,8 @@ async def test_cancelling_mcp_scan_defers_cleanup_until_worker_terminates(monkey
     import asyncio
     import sys
     import threading
-    from user_scanner.core import helpers
-    from user_scanner.mcp import handlers
+    from doxx.core import helpers
+    from doxx.mcp import handlers
 
     started = threading.Event()
     release = threading.Event()
@@ -333,8 +333,8 @@ async def test_cancelling_mcp_cross_scan_defers_cleanup(monkeypatch):
     import asyncio
     import sys
     import threading
-    from user_scanner.core import helpers
-    from user_scanner.mcp import handlers
+    from doxx.core import helpers
+    from doxx.mcp import handlers
 
     started = threading.Event()
     release = threading.Event()

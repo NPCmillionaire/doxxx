@@ -1,5 +1,5 @@
 """
-user-scanner Engine Unit Tests
+doxx Engine Unit Tests
 
 This suite tests the core orchestration logic of 'engine.py'.
 It verifies:
@@ -16,10 +16,10 @@ to isolate the engine from the network. No actual API requests are performed.
 
 import pytest
 from types import ModuleType
-from user_scanner.core import engine
+from doxx.core import engine
 from unittest.mock import Mock, AsyncMock, call
-from user_scanner.core.helpers import ScanConfig
-from user_scanner.core.result import Result, Status
+from doxx.core.helpers import ScanConfig
+from doxx.core.result import Result, Status
 
 
 @pytest.fixture

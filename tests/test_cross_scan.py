@@ -1,7 +1,7 @@
 import pytest
 
-from user_scanner.core import limits
-from user_scanner.core.cross_scan import (
+from doxx.core import limits
+from doxx.core.cross_scan import (
     CrossScanConfig,
     _already_scanned,
     _already_swept,
@@ -14,9 +14,9 @@ from user_scanner.core.cross_scan import (
     _split_budget,
     run_cross_scan,
 )
-from user_scanner.core.helpers import ScanConfig, get_site_name, is_loud
-from user_scanner.core.pivots import PivotKind
-from user_scanner.core.result import Result
+from doxx.core.helpers import ScanConfig, get_site_name, is_loud
+from doxx.core.pivots import PivotKind
+from doxx.core.result import Result
 
 
 def source(**extra):
@@ -199,10 +199,10 @@ def test_excessive_depth_fails_before_any_validator_runs(monkeypatch):
     def boom(*args, **kwargs):
         raise AssertionError("validator ran")
 
-    monkeypatch.setattr("user_scanner.core.cross_scan.run_user_full", boom)
-    monkeypatch.setattr("user_scanner.core.cross_scan.run_user_module", boom)
-    monkeypatch.setattr("user_scanner.core.cross_scan.run_email_full_batch", boom)
-    monkeypatch.setattr("user_scanner.core.cross_scan.run_email_module_batch", boom)
+    monkeypatch.setattr("doxx.core.cross_scan.run_user_full", boom)
+    monkeypatch.setattr("doxx.core.cross_scan.run_user_module", boom)
+    monkeypatch.setattr("doxx.core.cross_scan.run_email_full_batch", boom)
+    monkeypatch.setattr("doxx.core.cross_scan.run_email_module_batch", boom)
 
     with pytest.raises(ValueError, match="at most"):
         run_cross_scan([], ScanConfig(), CrossScanConfig(depth=10_000, sweep=10_000))
@@ -216,9 +216,9 @@ def test_pivot_graph_cannot_exceed_the_validator_budget(monkeypatch):
         calls.append((username, len(modules)))
         return []
 
-    monkeypatch.setattr("user_scanner.core.cross_scan.run_user_module", record)
+    monkeypatch.setattr("doxx.core.cross_scan.run_user_module", record)
     monkeypatch.setattr(
-        "user_scanner.core.cross_scan.run_user_full",
+        "doxx.core.cross_scan.run_user_full",
         lambda *args, **kwargs: (_ for _ in ()).throw(AssertionError("full sweep")),
     )
 

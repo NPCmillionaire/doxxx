@@ -1,6 +1,6 @@
 import json
 
-from user_scanner.core import hudson
+from doxx.core import hudson
 
 
 class DummyResponse:

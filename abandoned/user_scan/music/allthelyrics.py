@@ -1,4 +1,4 @@
-from user_scanner.core.orchestrator import Result, make_request
+from doxx.core.orchestrator import Result, make_request
 
 def validate_allthelyrics(user):
     url = "https://www.allthelyrics.com/forum/member.php"

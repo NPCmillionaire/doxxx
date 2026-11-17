@@ -1,5 +1,5 @@
-from user_scanner.core import loud_prompt
-from user_scanner.core.helpers import _get_config_path, load_config, save_config_value
+from doxx.core import loud_prompt
+from doxx.core.helpers import _get_config_path, load_config, save_config_value
 
 
 def test_loud_module_config_value():

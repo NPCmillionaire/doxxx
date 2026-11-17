@@ -1,5 +1,5 @@
 {
-  description = "user-scanner";
+  description = "doxx";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -20,7 +20,7 @@
         pkgs = import nixpkgs {inherit system;};
       in {
         default = pkgs.python312Packages.buildPythonApplication {
-          pname = "user-scanner";
+          pname = "doxx";
           version = "1.5.2.5";
 
           src = self;
@@ -40,7 +40,7 @@
             rich
           ];
 
-          pythonImportsCheck = ["user_scanner"];
+          pythonImportsCheck = ["doxx"];
         };
       }
     );
@@ -48,7 +48,7 @@
     apps = forAllSystems (system: {
       default = {
         type = "app";
-        program = "${self.packages.${system}.default}/bin/user-scanner";
+        program = "${self.packages.${system}.default}/bin/doxx";
       };
     });
 

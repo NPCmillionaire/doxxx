@@ -1,6 +1,6 @@
 # 🛠 Library Mode Usage Guide
 
-User Scanner provides a powerful **Library Mode** via its core engine. This allows you to integrate OSINT capabilities directly into your own Python scripts, returning clean, structured data in JSON or CSV formats.
+Doxx provides a powerful **Library Mode** via its core engine. This allows you to integrate OSINT capabilities directly into your own Python scripts, returning clean, structured data in JSON or CSV formats.
 
 ---
 
@@ -8,13 +8,13 @@ User Scanner provides a powerful **Library Mode** via its core engine. This allo
 
 The engine automatically detects whether you are using a module from `email_scan` or `user_scan` by inspecting its path. It then adjusts the result labels (e.g., "Registered" vs "Found") automatically.
 
-`check`, `check_category`, and `check_all` apply the same safety policy as the CLI. A loud module — one that may email or notify the account — is skipped unless you pass `configs=ScanConfig(allow_loud=True)`. Pass `configs=ScanConfig(no_nsfw=True)` to leave adult modules out. `ScanConfig` lives in `user_scanner.core.helpers`.
+`check`, `check_category`, and `check_all` apply the same safety policy as the CLI. A loud module — one that may email or notify the account — is skipped unless you pass `configs=ScanConfig(allow_loud=True)`. Pass `configs=ScanConfig(no_nsfw=True)` to leave adult modules out. `ScanConfig` lives in `doxx.core.helpers`.
 
 ### Email Scan Example
 ```python
 import asyncio
-from user_scanner.core import engine
-from user_scanner.email_scan.social import instagram
+from doxx.core import engine
+from doxx.email_scan.social import instagram
 
 async def main():
     # Engine detects 'email_scan' path -> Result status: "Registered" / "Not Registered" / "Error"
@@ -44,8 +44,8 @@ Output:
 ### Username Scan Example
 ```python
 import asyncio
-from user_scanner.core import engine
-from user_scanner.user_scan.dev import github
+from doxx.core import engine
+from doxx.user_scan.dev import github
 
 async def main():
     # Engine detects 'user_scan' path -> Result status: "Not Found" / "Found" / "Error"
@@ -86,8 +86,8 @@ You can scan entire folders of modules (e.g., all social media, all forums) or p
 #### Scan a Specific Category
 ```python
 import asyncio
-from user_scanner.core import engine
-from user_scanner.core.formatter import into_json
+from doxx.core import engine
+from doxx.core.formatter import into_json
 
 async def main():
     target = "johndoe123"
@@ -407,8 +407,8 @@ Output:
 #### Full OSINT Scan (All Categories)
 ```python
 import asyncio
-from user_scanner.core import engine
-from user_scanner.core.formatter import into_json
+from doxx.core import engine
+from doxx.core.formatter import into_json
 
 async def main():
     email = "target@example.com"

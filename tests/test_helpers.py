@@ -5,10 +5,10 @@ from types import SimpleNamespace
 from unittest.mock import MagicMock, AsyncMock, patch
 import pytest
 
-from user_scanner.__main__ import main
-from user_scanner.core import helpers
-from user_scanner.core.result import Result
-from user_scanner.core.helpers import _get_config_path, load_config, save_config_value, CONFIG_PATH
+from doxx.__main__ import main
+from doxx.core import helpers
+from doxx.core.result import Result
+from doxx.core.helpers import _get_config_path, load_config, save_config_value, CONFIG_PATH
 
 
 def test_get_site_name():
@@ -17,8 +17,8 @@ def test_get_site_name():
 
     assert helpers.get_site_name(module("X")) == "X (Twitter)"
     assert helpers.get_site_name(module("x")) == "X (Twitter)"
-    assert helpers.get_site_name(module("user_scanner.github")) == "Github"
-    assert helpers.get_site_name(module("user_scanner.chess_com")) == "Chess.com"
+    assert helpers.get_site_name(module("doxx.github")) == "Github"
+    assert helpers.get_site_name(module("doxx.chess_com")) == "Chess.com"
 
 
 def test_parse_email_domain_scopes_dedupes_in_order(monkeypatch):
@@ -50,20 +50,20 @@ def test_parse_email_domain_scopes_rejects_unknown():
 @pytest.fixture
 def run_main(monkeypatch):
     def _run(args):
-        monkeypatch.setattr(sys, "argv", ["user-scanner"] + args)
-        monkeypatch.setattr("user_scanner.__main__.check_for_updates", lambda: None)
-        monkeypatch.setattr("user_scanner.__main__.update_self", lambda: None)
-        monkeypatch.setattr("user_scanner.__main__.print_banner", lambda: None)
+        monkeypatch.setattr(sys, "argv", ["doxx"] + args)
+        monkeypatch.setattr("doxx.__main__.check_for_updates", lambda: None)
+        monkeypatch.setattr("doxx.__main__.update_self", lambda: None)
+        monkeypatch.setattr("doxx.__main__.print_banner", lambda: None)
         # Added **kwargs to handle show_url argument
         monkeypatch.setattr(
-            "user_scanner.__main__.run_email_module_batch",
+            "doxx.__main__.run_email_module_batch",
             lambda m, t, config, **kwargs: [
                 Result.taken(username=t, site_name=m, is_email=True)
             ],
         )
         # Added **kwargs to handle show_url argument
         monkeypatch.setattr(
-            "user_scanner.__main__.run_user_module",
+            "doxx.__main__.run_user_module",
             lambda module, target, config, **kwargs: [
                 Result.taken(username=target, site_name=module, is_email=False)
             ],
@@ -474,13 +474,13 @@ http://3""")
 
 
 def test_get_config_path_default(monkeypatch):
-    monkeypatch.delenv("USER_SCANNER_CONFIG", raising=False)
+    monkeypatch.delenv("DOXX_CONFIG", raising=False)
     path = _get_config_path()
     assert path == CONFIG_PATH
 
 def test_get_config_path_env_override(monkeypatch, tmp_path):
     custom_path = tmp_path / "custom_config.json"
-    monkeypatch.setenv("USER_SCANNER_CONFIG", str(custom_path))
+    monkeypatch.setenv("DOXX_CONFIG", str(custom_path))
     path = _get_config_path()
     assert path == custom_path
 
@@ -533,7 +533,7 @@ def test_save_config_value_creates_directory(tmp_path):
     assert nested_path.parent.is_dir()
 
 def test_hudson_config_value():
-    from user_scanner.core.helpers import _get_config_path, load_config
+    from doxx.core.helpers import _get_config_path, load_config
 
     actual_path = _get_config_path()
     data = load_config(path=actual_path)
@@ -542,7 +542,7 @@ def test_hudson_config_value():
     assert status is True, f"FAIL: Actual config at {actual_path} has auto_hudson_prompt set to {status} (Expected: True)"
 
 def test_global_timeout():
-    from user_scanner.core.helpers import set_global_timeout, get_global_timeout
+    from doxx.core.helpers import set_global_timeout, get_global_timeout
     set_global_timeout(10.5)
     assert get_global_timeout() == 10.5
     set_global_timeout(None)

@@ -1,6 +1,6 @@
 import json
 
-from user_scanner.core.nextjs import (
+from doxx.core.nextjs import (
     iter_next_app_flight_chunks,
     parse_next_pages_data,
     parse_next_pages_redirect,

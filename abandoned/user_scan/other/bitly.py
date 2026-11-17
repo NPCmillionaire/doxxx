@@ -1,5 +1,5 @@
-from user_scanner.core.helpers import get_random_user_agent
-from user_scanner.core.orchestrator import Result, make_request
+from doxx.core.helpers import get_random_user_agent
+from doxx.core.orchestrator import Result, make_request
 
 def validate_bitly(user: str) -> Result:
     url = f"https://bit.ly/{user}"

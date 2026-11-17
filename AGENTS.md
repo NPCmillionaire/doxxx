@@ -21,11 +21,11 @@ profile metadata. See `README.md` for the full feature list and install steps.
 
 ## Repository layout
 
-- `user_scanner/user_scan/<category>/<site>.py` — **username** availability
+- `doxx/user_scan/<category>/<site>.py` — **username** availability
   modules. Synchronous. Export `def validate_<site>(user: str) -> Result`.
-- `user_scanner/email_scan/<category>/<service>.py` — **email** OSINT modules.
+- `doxx/email_scan/<category>/<service>.py` — **email** OSINT modules.
   Asynchronous. Export `async def validate_<service>(email: str) -> Result`.
-- `user_scanner/core/` — engine, orchestrator, helpers, `Result`, formatters,
+- `doxx/core/` — engine, orchestrator, helpers, `Result`, formatters,
   exporters (JSON/CSV/PDF). Changes here affect every module; review carefully.
 - `abandoned/<email_scan|user_scan>/<category>/<site>.py` — retired modules
   (dead sites, permanently broken detection). See "Retiring a module" below.
@@ -62,7 +62,7 @@ Read `CONTRIBUTING.md` first — it has full examples. The essentials:
 ## Retiring a module
 
 Never delete a scan module. When a site shuts down or a module can no longer
-work, **move** the file from `user_scanner/<email_scan|user_scan>/<category>/`
+work, **move** the file from `doxx/<email_scan|user_scan>/<category>/`
 to `abandoned/<email_scan|user_scan>/<category>/` — same scan type, same
 category, same file name, contents unchanged. This keeps the module out of
 `load_modules()` while preserving it for revival if the site returns.
@@ -73,7 +73,7 @@ Local CI gates must pass:
 
 ```
 ruff check .
-mypy user_scanner
+mypy doxx
 pytest
 ```
 

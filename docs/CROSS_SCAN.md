@@ -9,8 +9,8 @@ carry for usernames **and email addresses**, and scans each against the modules
 for its own kind.
 
 ```
-user-scanner -e target@example.com --cross-scan
-user-scanner -u target --cross-scan
+doxx -e target@example.com --cross-scan
+doxx -u target --cross-scan
 ```
 
 Either pass can be the source as well as the destination, so all four directions
@@ -38,7 +38,7 @@ Two shapes of metadata carry a username:
 | A link on the profile | `https://github.com/johndoe` | username `johndoe`, site `github` |
 
 Links resolve to a `(site, username)` pair through a route table in
-`user_scanner/core/pivots.py` — hosts, path shapes (`/in/{user}`,
+`doxx/core/pivots.py` — hosts, path shapes (`/in/{user}`,
 `/users/{id}/{user}`, `/@{user}`) and `{user}.host` subdomains. A link to a root
 domain with no path (`https://johndoe.com/`) yields the domain label as a
 username with no particular site attached.

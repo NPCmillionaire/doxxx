@@ -1,7 +1,7 @@
 import re
 import urllib.parse
-from user_scanner.core.helpers import get_random_user_agent
-from user_scanner.core.orchestrator import Result, generic_validate
+from doxx.core.helpers import get_random_user_agent
+from doxx.core.orchestrator import Result, generic_validate
 
 def validate_online_ts2009_com(user: str) -> Result:
     encoded_user = urllib.parse.quote(user)

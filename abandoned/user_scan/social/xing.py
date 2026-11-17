@@ -1,4 +1,4 @@
-from user_scanner.core.orchestrator import Result, make_request
+from doxx.core.orchestrator import Result, make_request
 import re
 
 def validate_xing(user: str) -> Result:

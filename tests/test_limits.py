@@ -3,7 +3,7 @@ import sys
 
 import pytest
 
-from user_scanner.core import limits
+from doxx.core import limits
 
 INVALID_FLOATS = ["nan", "inf", "-inf", float("nan"), float("inf"), math.inf]
 
