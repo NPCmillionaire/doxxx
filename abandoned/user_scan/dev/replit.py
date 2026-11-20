@@ -1,4 +1,4 @@
-from doxx.core.orchestrator import status_validate
+from doxxx.core.orchestrator import status_validate
 
 
 def validate_replit(user):

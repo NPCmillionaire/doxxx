@@ -1,9 +1,9 @@
 import types
 from types import SimpleNamespace
 
-from doxx.core import orchestrator
-from doxx.core.helpers import ScanConfig
-from doxx.core.result import Result
+from doxxx.core import orchestrator
+from doxxx.core.helpers import ScanConfig
+from doxxx.core.result import Result
 
 
 def test_status_validate_available(monkeypatch):
@@ -53,8 +53,8 @@ def test_run_checks_category_threaded(monkeypatch, tmp_path):
 
 def test_set_concurrency():
     import pytest
-    from doxx.core.orchestrator import set_concurrency
-    import doxx.core.orchestrator as orchestrator
+    from doxxx.core.orchestrator import set_concurrency
+    import doxxx.core.orchestrator as orchestrator
     
     original_max = orchestrator.MAX_CONCURRENT_REQUESTS
     try:
@@ -116,7 +116,7 @@ def test_run_batch_multiple_categories_grouped(capsys, monkeypatch):
 def test_set_concurrency_rejects_huge_values_before_building_an_executor():
     from unittest.mock import patch
     import pytest
-    import doxx.core.orchestrator as orchestrator
+    import doxxx.core.orchestrator as orchestrator
 
     before = (orchestrator.MAX_CONCURRENT_REQUESTS, orchestrator._shared_executor)
     with patch("concurrent.futures.ThreadPoolExecutor") as pool:
@@ -128,7 +128,7 @@ def test_set_concurrency_rejects_huge_values_before_building_an_executor():
 
 
 def test_set_concurrency_accepts_the_maximum():
-    import doxx.core.orchestrator as orchestrator
+    import doxxx.core.orchestrator as orchestrator
 
     original = orchestrator.MAX_CONCURRENT_REQUESTS
     try:

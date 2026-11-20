@@ -1,7 +1,7 @@
 import re
 
-from doxx.core.impersonate import impersonate_request_async
-from doxx.core.result import Result
+from doxxx.core.impersonate import impersonate_request_async
+from doxxx.core.result import Result
 
 
 _URL = "https://www.seduo.sk/poslat-zabudnute-heslo"

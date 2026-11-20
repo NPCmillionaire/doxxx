@@ -2,7 +2,7 @@ import httpx
 import re
 import time
 import uuid
-from doxx.core.result import Result
+from doxxx.core.result import Result
 
 
 async def _check(email: str) -> Result:

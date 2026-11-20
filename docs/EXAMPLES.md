@@ -1,6 +1,6 @@
-# 🖼️ Doxx Media & Output Gallery
+# 🖼️ Doxxx Media & Output Gallery
 
-Demonstrations, visual terminal walkthroughs, and sample output formats for Doxx.
+Demonstrations, visual terminal walkthroughs, and sample output formats for Doxxx.
 
 ---
 
@@ -14,7 +14,7 @@ Demonstrations, visual terminal walkthroughs, and sample output formats for Doxx
 
 ### Dual-Mode Username & Email Scanning
 <div align="center">
-  <img width="850" alt="Doxx Terminal Output" src="https://github.com/user-attachments/assets/da7d73a5-2a50-4704-b71c-993fe5a17644" />
+  <img width="850" alt="Doxxx Terminal Output" src="https://github.com/user-attachments/assets/da7d73a5-2a50-4704-b71c-993fe5a17644" />
 </div>
 
 ---

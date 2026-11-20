@@ -1,5 +1,5 @@
-from doxx.core import helpers as hl
-from doxx.utils import update as upd
+from doxxx.core import helpers as hl
+from doxxx.utils import update as upd
 import subprocess
 
 def test_default_config():
@@ -45,6 +45,6 @@ def test_update_self_prints_message_on_install_failure(monkeypatch, capsys):
     upd.update_self()
 
     out = capsys.readouterr().out
-    assert "Failed to update doxx" in out
+    assert "Failed to update doxxx" in out
     assert len(calls) == 1
     assert calls[0][-1] == upd.GIT_URL

@@ -4,14 +4,14 @@ import json
 import sys
 import pytest
 
-from doxx.core.result import Result
-import doxx.__main__ as cli
+from doxxx.core.result import Result
+import doxxx.__main__ as cli
 
 
 def test_json_export_new_file(monkeypatch, tmp_path):
     output = tmp_path / "new_report.json"
     monkeypatch.setattr(
-        sys, "argv", ["doxx", "-u", "audit", "-f", "json", "-o", str(output)]
+        sys, "argv", ["doxxx", "-u", "audit", "-f", "json", "-o", str(output)]
     )
     monkeypatch.setattr(cli, "check_for_updates", lambda: None)
     monkeypatch.setattr(cli, "print_banner", lambda: None)
@@ -35,7 +35,7 @@ def test_json_export_append_valid_existing(monkeypatch, tmp_path):
     output.write_text(json.dumps(initial_data), encoding="utf-8")
 
     monkeypatch.setattr(
-        sys, "argv", ["doxx", "-u", "audit", "-f", "json", "-o", str(output)]
+        sys, "argv", ["doxxx", "-u", "audit", "-f", "json", "-o", str(output)]
     )
     monkeypatch.setattr(cli, "check_for_updates", lambda: None)
     monkeypatch.setattr(cli, "print_banner", lambda: None)
@@ -67,7 +67,7 @@ def test_json_export_preserves_corrupt_existing_file(monkeypatch, tmp_path, corr
     output.write_text(corrupt_content, encoding="utf-8")
 
     monkeypatch.setattr(
-        sys, "argv", ["doxx", "-u", "audit", "-f", "json", "-o", str(output)]
+        sys, "argv", ["doxxx", "-u", "audit", "-f", "json", "-o", str(output)]
     )
     monkeypatch.setattr(cli, "check_for_updates", lambda: None)
     monkeypatch.setattr(cli, "print_banner", lambda: None)
@@ -90,7 +90,7 @@ def test_json_export_empty_existing_file(monkeypatch, tmp_path):
     output.write_text("", encoding="utf-8")
 
     monkeypatch.setattr(
-        sys, "argv", ["doxx", "-u", "audit", "-f", "json", "-o", str(output)]
+        sys, "argv", ["doxxx", "-u", "audit", "-f", "json", "-o", str(output)]
     )
     monkeypatch.setattr(cli, "check_for_updates", lambda: None)
     monkeypatch.setattr(cli, "print_banner", lambda: None)
@@ -134,7 +134,7 @@ def test_bulk_targets_stay_inside_the_output_directory(monkeypatch, tmp_path):
         sys,
         "argv",
         [
-            "doxx",
+            "doxxx",
             "-uf",
             str(names),
             "-f",

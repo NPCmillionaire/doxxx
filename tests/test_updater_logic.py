@@ -1,4 +1,4 @@
-from doxx.utils import updater_logic
+from doxxx.utils import updater_logic
 
 
 def test_skips_prompt_when_remote_unreachable(monkeypatch, capsys):

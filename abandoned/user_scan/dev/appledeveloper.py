@@ -1,5 +1,5 @@
-from doxx.core.helpers import get_random_user_agent
-from doxx.core.orchestrator import Result, make_request
+from doxxx.core.helpers import get_random_user_agent
+from doxxx.core.orchestrator import Result, make_request
 
 def validate_appledeveloper(user: str) -> Result:
     url = f"https://developer.apple.com/forums/profile/{user}"

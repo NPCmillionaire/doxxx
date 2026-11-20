@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from doxx.core.pivots import (
+from doxxx.core.pivots import (
     EmailKind,
     _HOST_ROUTES,
     _SUBDOMAIN_ROUTES,
@@ -16,9 +16,9 @@ from doxx.core.pivots import (
     select_email_pivots,
     select_pivots,
 )
-from doxx.core.result import Result
+from doxxx.core.result import Result
 
-USER_SCAN_ROOT = Path(__file__).resolve().parent.parent / "doxx" / "user_scan"
+USER_SCAN_ROOT = Path(__file__).resolve().parent.parent / "doxxx" / "user_scan"
 
 
 def make_result(site_name="Gravatar", extra=None, found=True, **kwargs):

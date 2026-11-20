@@ -8,16 +8,16 @@ Use patterns directly with the `-u` (username) or `-e` (email) flags:
 
 ```bash
 # Scan "johna", "johnb", "johnc"
-doxx -u "john[a-c]"
+doxxx -u "john[a-c]"
 
 # Scan up to 50 permutations instead of default 100
-doxx -u "john[0-9]{0-2}" -s 50
+doxxx -u "john[0-9]{0-2}" -s 50
 
 # Scan multiple variations with case differences
-doxx -u "[jJ]ohn[0-9]{1-2}"
+doxxx -u "[jJ]ohn[0-9]{1-2}"
 
 # With emails
-doxx -e "user[a-z]{0-1}@example.com"
+doxxx -e "user[a-z]{0-1}@example.com"
 ```
 
 The `-s` flag (short for `--stop`) limits how many permutations are scanned. By default, only the first 100 are checked.
@@ -72,7 +72,7 @@ text[0-1]{1-3}    → "text0", "text1", "text00", "text01", "text10", "text11", 
 ### Username Variations with Numbers
 
 ```bash
-doxx -u "john[0-9]{0-3}"
+doxxx -u "john[0-9]{0-3}"
 ```
 
 Scans up to 100 variations: `john`, `john0`–`john9`, `john00`–`john99`, `john000`–`john999`
@@ -80,7 +80,7 @@ Scans up to 100 variations: `john`, `john0`–`john9`, `john00`–`john99`, `joh
 ### Multiple Name Parts with Case Variations
 
 ```bash
-doxx -u "[jJ]ohn[0-9]{0-2}"
+doxxx -u "[jJ]ohn[0-9]{0-2}"
 ```
 
 Scans variations like: `john`, `John`, `john0`–`john99`, `John0`–`John99`
@@ -88,7 +88,7 @@ Scans variations like: `john`, `John`, `john0`–`john99`, `John0`–`John99`
 ### Underscore and Dot Variations
 
 ```bash
-doxx -u "user[_.]name"
+doxxx -u "user[_.]name"
 ```
 
 Scans: `user_name`, `user.name`
@@ -96,7 +96,7 @@ Scans: `user_name`, `user.name`
 ### Email with Variations
 
 ```bash
-doxx -e "user[a-z]{0-1}@example.com"
+doxxx -e "user[a-z]{0-1}@example.com"
 ```
 
 Scans email addresses: `user@example.com`, `usera@example.com`–`userz@example.com`
@@ -107,7 +107,7 @@ Use the `-s` or `--stop` flag to limit how many permutations are checked:
 
 ```bash
 # Check only 10 permutations instead of default 100
-doxx -u "john[0-9]{0-3}" -s 10
+doxxx -u "john[0-9]{0-3}" -s 10
 ```
 
 The tool will show you how many permutations are available:
@@ -125,7 +125,7 @@ The tool automatically shows how many variations were found and scans up to the 
 1. **Start with limits** - Always use `-s` to limit how many permutations you scan:
 
    ```bash
-   doxx -u "pattern[0-9]{0-3}" -s 25
+   doxxx -u "pattern[0-9]{0-3}" -s 25
    ```
 
 2. **Check pattern complexity** - A pattern like `[a-z]{5}` would generate 11,881,376 combinations. Start small and increase gradually.
@@ -137,12 +137,12 @@ The tool automatically shows how many variations were found and scans up to the 
 4. **Combine with other filters** - Use `-c` (category) or `-m` (module) to narrow the scope:
 
    ```bash
-   doxx -u "user[a-z]{0-1}" -c social -s 50
+   doxxx -u "user[a-z]{0-1}" -c social -s 50
    ```
 
 5. **Add delays between requests** - Use the `--delay` flag to avoid rate limiting:
    ```bash
-   doxx -u "test[0-9]{1-2}" --delay 1.0
+   doxxx -u "test[0-9]{1-2}" --delay 1.0
    ```
 
 ## CLI Examples
@@ -150,41 +150,41 @@ The tool automatically shows how many variations were found and scans up to the 
 ### Simple usernames with numbers
 
 ```bash
-doxx -u "johnny[0-9]{0-2}"
+doxxx -u "johnny[0-9]{0-2}"
 ```
 
 ### Case variations
 
 ```bash
-doxx -u "[jJ]ohn[0-9]{1-2}"
+doxxx -u "[jJ]ohn[0-9]{1-2}"
 ```
 
 ### Multiple separators
 
 ```bash
-doxx -u "john[._-]doe"
+doxxx -u "john[._-]doe"
 ```
 
 ### Complex pattern with limited scans
 
 ```bash
-doxx -u "user[a-z]{0-1}[0-9]{0-2}" -s 50
+doxxx -u "user[a-z]{0-1}[0-9]{0-2}" -s 50
 ```
 
 ### Email pattern variations
 
 ```bash
-doxx -e "[jJ]ohn[_.]doe@example.com"
+doxxx -e "[jJ]ohn[_.]doe@example.com"
 ```
 
 ### Combining with other flags
 
 ```bash
 # Scan a pattern with verbose output and delay between requests
-doxx -u "admin[0-9]{1-2}" -v --delay 0.5 -s 25
+doxxx -u "admin[0-9]{1-2}" -v --delay 0.5 -s 25
 
 # Scan with a specific category
-doxx -u "user[a-c]" -c social -s 50
+doxxx -u "user[a-c]" -c social -s 50
 ```
 
 ## Pattern Limitations

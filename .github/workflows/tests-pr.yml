@@ -51,7 +51,7 @@ jobs:
           mkdir -p test-output
           pytest -vv --maxfail=1 \
             --junitxml=test-output/report.xml \
-            --cov=doxx \
+            --cov=doxxx \
             --cov-report=xml:test-output/coverage.xml \
             --cov-report=term
 

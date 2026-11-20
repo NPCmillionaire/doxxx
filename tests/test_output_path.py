@@ -1,6 +1,6 @@
 import pytest
 
-from doxx.core.output_path import export_path_for_target, slug_target
+from doxxx.core.output_path import export_path_for_target, slug_target
 
 
 def test_slug_drops_traversal_and_unicode_separators():

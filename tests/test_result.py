@@ -1,8 +1,8 @@
 import pytest
 from colorama import Fore
 
-from doxx.core.helpers import ScanConfig
-from doxx.core.result import Result, Status, _neutralize_csv_cell, indent_text
+from doxxx.core.helpers import ScanConfig
+from doxxx.core.result import Result, Status, _neutralize_csv_cell, indent_text
 
 
 def test_status_labels():

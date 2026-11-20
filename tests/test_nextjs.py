@@ -1,6 +1,6 @@
 import json
 
-from doxx.core.nextjs import (
+from doxxx.core.nextjs import (
     iter_next_app_flight_chunks,
     parse_next_pages_data,
     parse_next_pages_redirect,

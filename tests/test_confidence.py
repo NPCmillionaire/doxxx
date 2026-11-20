@@ -1,6 +1,6 @@
-from doxx.core.confidence import Confidence, build_anchors, rank_emails, score
-from doxx.core.pivots import extract_email_pivots, select_email_pivots
-from doxx.core.result import Result
+from doxxx.core.confidence import Confidence, build_anchors, rank_emails, score
+from doxxx.core.pivots import extract_email_pivots, select_email_pivots
+from doxxx.core.result import Result
 
 def hit(site_name, username="johndoe", **extra):
     return Result.taken(extra=extra).update(site_name=site_name, username=username)

@@ -1,6 +1,6 @@
 import pytest
 from itertools import islice
-from doxx.core.patterns import expand_patterns, expand_patterns_random, count_patterns
+from doxxx.core.patterns import expand_patterns, expand_patterns_random, count_patterns
 
 
 # ── expand_patterns: plain text (no pattern syntax) ──────────────────────

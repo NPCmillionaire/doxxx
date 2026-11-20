@@ -1,5 +1,5 @@
 import httpx
-from doxx.core.result import Result
+from doxxx.core.result import Result
 
 
 async def _check(email: str) -> Result:

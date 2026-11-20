@@ -1,7 +1,7 @@
 def test_set_concurrency():
     import pytest
-    from doxx.core.email_orchestrator import set_concurrency
-    import doxx.core.email_orchestrator as email_orchestrator
+    from doxxx.core.email_orchestrator import set_concurrency
+    import doxxx.core.email_orchestrator as email_orchestrator
     
     original_max = email_orchestrator.MAX_CONCURRENT_REQUESTS
     try:
@@ -22,9 +22,9 @@ def test_set_concurrency():
 
 def test_run_email_batch_multiple_categories_grouped(capsys, monkeypatch):
     import types
-    from doxx.core import email_orchestrator
-    from doxx.core.helpers import ScanConfig
-    from doxx.core.result import Result
+    from doxxx.core import email_orchestrator
+    from doxxx.core.helpers import ScanConfig
+    from doxxx.core.result import Result
 
     mod1 = types.ModuleType("cat_a.site1")
     mod1.__file__ = "/path/to/email_scan/cat_a/site1.py"
@@ -78,7 +78,7 @@ def test_run_email_batch_multiple_categories_grouped(capsys, monkeypatch):
 
 def test_set_concurrency_has_a_maximum():
     import pytest
-    import doxx.core.email_orchestrator as email_orchestrator
+    import doxxx.core.email_orchestrator as email_orchestrator
 
     original = email_orchestrator.MAX_CONCURRENT_REQUESTS
     try:
@@ -95,9 +95,9 @@ def test_set_concurrency_has_a_maximum():
 def test_run_email_batch_passes_allow_loud_from_config_not_argv(monkeypatch):
     import sys
     import types
-    from doxx.core import email_orchestrator
-    from doxx.core.helpers import ScanConfig
-    from doxx.core.result import Result
+    from doxxx.core import email_orchestrator
+    from doxxx.core.helpers import ScanConfig
+    from doxxx.core.result import Result
 
     seen = {}
 

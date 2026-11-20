@@ -1,6 +1,6 @@
 import json
 from types import SimpleNamespace
-from doxx.core import version
+from doxxx.core import version
 
 
 def test_load_local_version(tmp_path, monkeypatch):

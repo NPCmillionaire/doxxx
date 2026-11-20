@@ -1,5 +1,5 @@
-from doxx.core.helpers import get_random_user_agent
-from doxx.core.orchestrator import Result, generic_validate
+from doxxx.core.helpers import get_random_user_agent
+from doxxx.core.orchestrator import Result, generic_validate
 
 
 def validate_adultforum(user):

@@ -1,5 +1,5 @@
-from doxx.core import loud_prompt
-from doxx.core.helpers import _get_config_path, load_config, save_config_value
+from doxxx.core import loud_prompt
+from doxxx.core.helpers import _get_config_path, load_config, save_config_value
 
 
 def test_loud_module_config_value():

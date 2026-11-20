@@ -1,5 +1,5 @@
 import json
-from doxx.core.orchestrator import generic_validate, Result
+from doxxx.core.orchestrator import generic_validate, Result
 
 def validate_500px(user):
     url = "https://api.500px.com/graphql"

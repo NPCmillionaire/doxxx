@@ -1,5 +1,5 @@
-from doxx.core.formatter import CSV_HEADER, into_csv, into_json
-from doxx.core.result import Result
+from doxxx.core.formatter import CSV_HEADER, into_csv, into_json
+from doxxx.core.result import Result
 
 
 def test_get_result_output_formats():

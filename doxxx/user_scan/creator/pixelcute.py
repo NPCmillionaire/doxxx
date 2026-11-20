@@ -1,0 +1,67 @@
+"""PixelCute username availability validator.
+
+PixelCute is a fan content creator platform. Creator pages live at
+``https://pixelcute.com/{user}``. A taken username returns a 200 with
+profile content; an unavailable username returns a 404 or redirect.
+This module uses the impersonating transport.
+"""
+
+import re
+from doxxx.core.impersonate import impersonate_validate
+from doxxx.core.result import Result
+
+
+def validate_pixelcute(user: str) -> Result:
+    """Check whether a PixelCute creator username is taken."""
+    url = f"https://pixelcute.com/{user}"
+    show_url = url
+
+    def process(response):
+        html = response.text
+
+        # Not-found states.
+        if response.status_code == 404:
+            if "Page not found" in html or "404" in html:
+                return Result.available(url=show_url)
+        if response.status_code in (301, 302):
+            location = response.headers.get("location", "")
+            if location.rstrip("/") == "https://pixelcute.com" or "/home" in location:
+                return Result.available(url=show_url)
+
+        # Taken state: verified by unique profile HTML markers.
+        if response.status_code == 200:
+            has_profile = any(
+                marker in html
+                for marker in (
+                    "profile",
+                    "bio",
+                    "photo",
+                )
+            )
+            # Confirm it's not just a generic landing page.
+            is_landing = "PixelCute" in html and (
+                "Sign up" in html or "Log in" in html
+            )
+            if has_profile and not is_landing:
+                extra: dict[str, str] = {}
+                # Extract name from og:title if present.
+                title = re.search(
+                    r'<meta[^>]+property=["\']og:title["\'][^>]+content=["\']([^"\']+)',
+                    html,
+                    re.IGNORECASE,
+                )
+                if title:
+                    extra["display_name"] = title.group(1).strip()
+                avatar = re.search(
+                    r'<meta[^>]+property=["\']og:image["\'][^>]+content=["\']([^"\']+)',
+                    html,
+                    re.IGNORECASE,
+                )
+                media: dict[str, str] = {}
+                if avatar:
+                    media["avatar"] = avatar.group(1).strip()
+                return Result.taken(extra=extra, media=media)
+
+        return Result.error(f"Unexpected PixelCute response (status {response.status_code})")
+
+    return impersonate_validate(url, process, show_url=show_url, allow_redirects=True)

@@ -1,6 +1,6 @@
-from doxx.core.helpers import ScanConfig
-from doxx.core.result import Result
-from doxx.core.terminal import rich_safe, scanning_description, strip_terminal_controls
+from doxxx.core.helpers import ScanConfig
+from doxxx.core.result import Result
+from doxxx.core.terminal import rich_safe, scanning_description, strip_terminal_controls
 
 
 def test_controls_are_removed_and_the_text_stays():
