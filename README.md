@@ -28,43 +28,6 @@ A powerful **2-in-1 OSINT suite** engineered for deep **Email and Username Intel
 
 With **2720+ total scan vectors**—including **210+ email-integrated sites** and **2510+ username platforms**—you can map digital footprints, analyze target behavior, uncover interests, full metadata of usernames and verify account registrations in seconds.
 
----
-
-## 💖 Sponsored by
-
-<p align="center">
-  <a href="https://webvetted.com/doxxx?ref=github&utm_source=github" target="_blank">
-    <img width="800" height="250" alt="WebVetted Sponsor Banner" src="https://github.com/user-attachments/assets/a18398f5-193e-4659-87d6-ccdbf6d4d4c2" />
-  </a>
-  <br>
-  <em><strong>Go beyond account enumeration.</strong> WebVetted turns an email or username into a complete identity investigation with deep OSINT enrichment, breach intel, AI analysis, and an interactive identity graph.</em>
-  <br>
-  <a href="https://webvetted.com/doxxx?ref=github&utm_source=github" target="_blank"><strong>Start an Investigation →</strong></a>
-</p>
-
----
-
-<p align="center">
-  <a href="https://noimosiny.com/?utm_campaign=doxxx&utm_source=github" target="_blank">
-    <img width="750" style="max-width: 100%; height: auto;" alt="banner-github" src="https://github.com/user-attachments/assets/05ca5b27-f9b4-4385-b0cf-768fbad05c39" />
-  </a>
-  <br>
-  <em><strong>Comprehensive OSINT platform for professional investigators and analysts.</strong> Reverse email, phone number, and username search across 250+ modules. Automate your intelligence gathering with our powerful tools.</em>
-  <br>
-  <a href="https://noimosiny.com/?utm_campaign=doxxx&utm_source=github" target="_blank"><strong>Get Started →</strong></a>
-</p>
-
----
-
-<p align="center">
-  <a href="https://proxy-seller.com/?partner=A711D0DB08424F5A" target="_blank">
-    <img width="750" style="max-width: 100%; height: auto;" alt="Proxy-Seller Banner" src="https://github.com/user-attachments/assets/d6f7db09-f532-4b51-82fb-8d3d976fe1d5" />
-  </a>
-  <br>
-  <strong>Get reliable proxies for web scraping and automation. Use promo code <em>KAIF15</em> for 15% OFF!</strong>
-  <br>
-  <a href="https://proxy-seller.com/?partner=A711D0DB08424F5A" target="_blank"><strong>Get Started with 15% OFF →</strong></a>
-</p>
 
 ---
 
@@ -275,47 +238,9 @@ asyncio.run(main())
 
 > 💡 *For complete Python API documentation and batch category checking examples, see **[docs/USAGE.md](docs/USAGE.md)**.*
 
----
-
-## 💖 Support the Project
-
-Web platforms constantly update authentication flows. Maintaining over 2710+ scan modules requires around-the-clock commitment to keep the suite reliable and free for the cybersecurity community.
-
-If `doxxx` has saved you hours of manual pivoting or aided your investigations, consider supporting the project:
-
-👉 **[Sponsor on GitHub](https://github.com/sponsors/kaifcodec)**
-
-### Project Sponsors
-
-Huge thanks to our amazing sponsors who support the ongoing development of `doxxx`!
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/soxoj">
-        <img src="https://github.com/soxoj.png?size=100" width="50px;" alt="soxoj"/>
-        <br />
-        <sub><b>@soxoj</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/hienyimba">
-        <img src="https://github.com/hienyimba.png?size=100" width="50px;" alt="hienyimba"/>
-        <br />
-        <sub><b>@hienyimba</b></sub>
-      </a>
-    </td>
-    <td align="center">
-      <a href="https://github.com/InDieTasten">
-        <img src="https://github.com/InDieTasten.png?size=100" width="50px;" alt="InDieTasten"/>
-        <br />
-        <sub><b>@InDieTasten</b></sub>
-      </a>
-    </td>
-  </tr>
-</table>
 
 ---
+
 
 ## 📜 Contributing
 
